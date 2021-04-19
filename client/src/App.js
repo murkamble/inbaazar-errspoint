@@ -1,9 +1,10 @@
 import React from 'react';
+import HomePage from './containers/HomePage';
 
 function App() {
   return (
     <div>
-      Welcome, Client Side...
+      <HomePage />
     </div>
   );
 }
