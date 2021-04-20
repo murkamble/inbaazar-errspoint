@@ -8,6 +8,7 @@ const Layout = (props) => {
         <div>
             <Header />
             <MenuHeader />
+            {props.children}
         </div>
     )
 }
