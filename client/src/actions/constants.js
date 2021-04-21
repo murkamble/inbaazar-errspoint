@@ -4,3 +4,7 @@ export const categoryConstants ={
     GET_ALL_CATEGORY_FAILURE: 'GET_ALL_CATEGORY_FAILURE',
     GET_ALL_CATEGORY_SUCCESS: 'GET_ALL_CATEGORY_SUCCESS',
 }
+
+export const productsConstants = {
+    GET_ALL_PRODUCT_SLUG: 'GET_ALL_PRODUCT_SLUG'
+}
