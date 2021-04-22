@@ -66,7 +66,7 @@ export default (state = initState, action) => {
         case categoryConstants.ADD_NEW_CATEGORY_SUCCESS:
             const category = action.payload.category;
             console.log(category);
-            const updateCategories = buildNewCategories(category.parentId, state.categories, category );
+            const updateCategories = buildNewCategories(category.parentId, state.categories, category);
             console.log(updateCategories);
 
             state = {
@@ -79,6 +79,24 @@ export default (state = initState, action) => {
         case categoryConstants.ADD_NEW_CATEGORY_FAILURE:
             state = {
                 ...initState,
+            }
+            break;
+        case categoryConstants.UPDATE_CATEGORRIES_REQUEST:
+            state = {
+                ...state,
+                loading: true
+            }
+            break;
+        case categoryConstants.UPDATE_CATEGORRIES_SUCCESS:
+            state = {
+                ...state,
+                loading: false
+            }
+            break;
+        case categoryConstants.UPDATE_CATEGORRIES_FAILURE:
+            state = {
+                ...state,
+                error: action.payload.error
             }
             break;
 
