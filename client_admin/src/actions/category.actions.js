@@ -6,10 +6,10 @@ export const getAllCategory = () => {
         dispatch({ type: categoryConstants.GET_ALL_CATEGORY_REQUEST });
         const res = await axios.get('/category/getcategories');
         console.log(res);
-        if(res.status === 201){
+        if (res.status === 201) {
             const { categoryList } = res.data;
             dispatch({ type: categoryConstants.GET_ALL_CATEGORY_SUCCESS, payload: { categories: res.data.categoriesList } });
-        }else{
+        } else {
             dispatch({ type: categoryConstants.GET_ALL_CATEGORY_FAILURE, payload: { error: res.data.error } });
         }
 
@@ -20,13 +20,25 @@ export const getAllCategory = () => {
 export const addCategory = (form) => {
     return async dispatch => {
         dispatch({ type: categoryConstants.ADD_NEW_CATEGORY_REQUEST });
-        const res = await axios.post(`category/create`, form);
-        // console.log(res);
-        if(res.status === 201){
-            dispatch({ type: categoryConstants.ADD_NEW_CATEGORY_SUCCESS, payload: { category: res.data.category }});
-        }else{
-            dispatch({ type: categoryConstants.ADD_NEW_CATEGORY_FAILURE, payload: res.data.error });
+        try {
+            const res = await axios.post(`/category/create`, form);
+            if (res.status === 201) {
+                dispatch({
+                    type: categoryConstants.ADD_NEW_CATEGORY_SUCCESS,
+                    payload: {
+                        category: res.data.category
+                    }
+                });
+            } else {
+                dispatch({
+                    type: categoryConstants.ADD_NEW_CATEGORY_FAILURE,
+                    payload: res.data.error
+                });
+            }
+        } catch (error) {
+            console.log(error.response)
         }
+
 
     }
 }
@@ -35,10 +47,10 @@ export const addCategory = (form) => {
 export const updateCategories = (form) => {
     return async dispatch => {
         const res = await axios.post(`category/update`, form);
-        if(res.status === 201){
+        if (res.status === 201) {
             return true;
             console.log(res);
-        }else{
+        } else {
             console.log(res);
         }
     }
